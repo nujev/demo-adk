@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Lee el mensaje del commit
+MSG=$(cat "$1")
+
+# Patrón para ID de Jira (ejemplo: INIA-123)
+PATTERN="INIA-[0-9]+"
+
+if ! grep -qE "$PATTERN" "$1"; then
+    echo "Error: El mensaje del commit debe incluir un ID de Jira (ejemplo: INIA-123)"
+    echo "Tu mensaje actual es: $MSG"
+    exit 1
+fi
